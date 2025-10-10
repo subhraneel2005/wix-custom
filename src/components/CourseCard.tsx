@@ -53,7 +53,7 @@ export function CourseCard({
 
   return (
     <>
-      <div className="bg-[#191919] rounded-[12px] p-4 max-w-[500px] w-full shadow-lg mx-auto flex flex-col gap-4">
+      <div className="bg-[#191919] rounded-[24px] p-6 max-w-[500px] w-full shadow-lg mx-auto flex flex-col gap-4">
         {/* Image */}
         <div
           className="w-full h-[320px] bg-center bg-contain rounded-[8px]"
@@ -61,7 +61,7 @@ export function CourseCard({
         />
 
         {/* Top Info */}
-        <div className="flex justify-between mb-4 text-[#fff]">
+        <div className="flex flex-wrap justify-between mb-4 text-[#fff]">
           <div className="flex items-center gap-1 text-[#FEC447]">
             <FaClock className="w-4 h-4" />
             <span className="text-[14px] font-semibold">{duration}</span>

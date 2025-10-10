@@ -61,7 +61,7 @@ export default function Courses() {
             your passion for cinema into a professional career.
           </p>
         </div>
-        {/* Film Cards */}
+        {/* Course Cards */}
         <div className="flex flex-wrap gap-12 justify-center items-start max-w-7xl mx-auto py-16">
           {courses.map((course, index) => (
             <CourseCard key={index} {...course} />
