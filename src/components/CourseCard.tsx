@@ -53,7 +53,7 @@ export function CourseCard({
 
   return (
     <>
-      <div className="bg-[#191919] rounded-[24px] p-6 max-w-[500px] w-full shadow-lg mx-auto flex flex-col gap-4">
+      <div className="bg-[#191919] rounded-[24px] p-6 w-full shadow-lg flex flex-col gap-4 h-full">
         {/* Image */}
         <div
           className="w-full h-[320px] bg-center bg-contain rounded-[8px]"
@@ -104,7 +104,7 @@ export function CourseCard({
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-auto">
           <button
             onClick={handleEnroll}
             className="flex-1 py-3 px-6 rounded-[25px] bg-gradient-to-r from-[#E59935] via-[#FFE998] to-[#E59935] text-[#2d2d2d] font-semibold hover:opacity-90 transition"
@@ -130,21 +130,21 @@ export function CourseCard({
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                className="p-2 rounded"
+                className="p-2 rounded text-black"
                 required
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Your Email"
-                className="p-2 rounded"
+                className="p-2 rounded text-black"
                 required
               />
               <input
                 type="tel"
                 name="phone"
                 placeholder="Your Phone"
-                className="p-2 rounded"
+                className="p-2 rounded text-black"
                 required
               />
               <div className="flex justify-end gap-3 mt-2">

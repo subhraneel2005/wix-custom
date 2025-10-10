@@ -7,12 +7,48 @@ import SingleCoursePage from "@/components/SIngle/SingleCoursePage";
 import WhatULearn from "@/components/SIngle/WhatULearn";
 import WhyLearn from "@/components/SIngle/WhyLearn";
 import WhyUs from "@/components/SIngle/WhyUs";
-import React from "react";
+import { getCourseBySlug, getAllCourseSlugs } from "@/data/courseData";
+import { notFound } from "next/navigation";
 
-export default function page() {
+// Generate static params for all courses
+export async function generateStaticParams() {
+  return getAllCourseSlugs().map((slug) => ({
+    slug: slug,
+  }));
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const course = getCourseBySlug(params.slug);
+
+  if (!course) {
+    return {
+      title: "Course Not Found",
+    };
+  }
+
+  return {
+    title: `${course.title} - Akshay Entertainment Academy`,
+    description: course.description,
+  };
+}
+
+export default function CoursePage({ params }: { params: { slug: string } }) {
+  const course = getCourseBySlug(params.slug);
+
+  // If course not found, show 404
+  if (!course) {
+    notFound();
+  }
+
   return (
     <div>
-      <SingleCoursePage />
+      <SingleCoursePage course={course} />
+
       <div className="text-center mt-24 px-6">
         <h2 className="md:text-6xl text-3xl font-bold text-white">
           Mastering <span className="text-[#FEC447]">Visual Storytelling</span>
@@ -24,14 +60,16 @@ export default function page() {
           connection and memorability that words alone can&apos;t match.
         </p>
       </div>
+
       <div className="container">
-        <WhyLearn />
-        <WhatULearn />
+        <WhyLearn course={course} />
+        <WhatULearn course={course} />
         <GetFreeWithCourse />
         <OurStudents />
         <WhyUs />
-        <CourseDetails />
+        <CourseDetails course={course} />
       </div>
+
       <StudentsSay />
       <LastForm />
     </div>

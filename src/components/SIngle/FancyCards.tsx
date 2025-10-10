@@ -1,37 +1,26 @@
 import React from "react";
 import { FaLeaf, FaPen, FaWandMagicSparkles } from "react-icons/fa6";
 
-const cards = [
-  {
-    icon: <FaLeaf className="text-black text-[22px]" />,
-    title: "Basics",
-    items: [
-      "Photoshop Interface & Tools",
-      "Layers, Masks & Brushes",
-      "Selections & Shapes",
-    ],
-  },
-  {
-    icon: <FaPen className="text-black text-[22px]" />,
-    title: "Creative Editing",
-    items: [
-      "Background Removal & Replacement",
-      "Filters, Effects & Typography",
-      "Social Media Edits & Thumbnails",
-    ],
-  },
-  {
-    icon: <FaWandMagicSparkles className="text-black text-[22px]" />,
-    title: "Professional Retouching",
-    items: [
-      "Portrait & Beauty Retouching",
-      "Product & Food Editing",
-      "Wedding & Event Styles",
-    ],
-  },
-];
+interface CardData {
+  icon: string;
+  title: string;
+  items: string[];
+}
 
-export default function FancyCards() {
+interface FancyCardsProps {
+  cards: CardData[];
+}
+
+// Icon mapping
+const iconMap: { [key: string]: React.ReactNode } = {
+  FaLeaf: <FaLeaf className="text-black text-[22px]" />,
+  FaPen: <FaPen className="text-black text-[22px]" />,
+  FaWandMagicSparkles: (
+    <FaWandMagicSparkles className="text-black text-[22px]" />
+  ),
+};
+
+export default function FancyCards({ cards }: FancyCardsProps) {
   return (
     <div className="h-full flex flex-wrap justify-center items-center gap-8 py-12">
       {cards.map((card, index) => (
@@ -45,7 +34,7 @@ export default function FancyCards() {
           <div className="relative z-10">
             {/* Icon */}
             <div className="h-[60px] w-[60px] rounded-xl flex items-center justify-center bg-gradient-to-tr from-[#ffd700] to-[#ffb347] shadow-[0_0_20px_rgba(255,215,0,0.4)] mb-4">
-              {card.icon}
+              {iconMap[card.icon] || iconMap.FaLeaf}
             </div>
 
             {/* Title */}

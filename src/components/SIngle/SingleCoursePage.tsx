@@ -1,7 +1,12 @@
 "use client";
 import Image from "next/image";
+import { Course } from "@/data/courseData";
 
-export default function SingleCoursePage() {
+interface SingleCoursePageProps {
+  course: Course;
+}
+
+export default function SingleCoursePage({ course }: SingleCoursePageProps) {
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden">
       {/* Background Image */}
@@ -19,12 +24,32 @@ export default function SingleCoursePage() {
       {/* Hero Content */}
       <div className="text-center mt-20 container">
         <h1 className="md:text-5xl text-3xl font-bold text-white">
-          Master Professional Photo Editing with{" "}
-          <span className="text-[#FEC447]">Photoshop</span>
+          {course.heroTitle.split(" ").map((word, index) => {
+            // Check if word contains common highlight keywords
+            const highlightWords = [
+              "Photoshop",
+              "Premiere",
+              "Pro",
+              "After",
+              "Effects",
+              "Photography",
+              "Cinematography",
+            ];
+            const shouldHighlight = highlightWords.some((hw) =>
+              word.includes(hw)
+            );
+
+            return shouldHighlight ? (
+              <span key={index} className="text-[#FEC447]">
+                {word}{" "}
+              </span>
+            ) : (
+              <span key={index}>{word} </span>
+            );
+          })}
         </h1>
         <p className="md:text-lg text-sm italic text-white/60 max-w-[900px] mt-4 mx-auto leading-relaxed">
-          Turn your passion into a career. Learn to transform ordinary photos
-          into stunning masterpieces with hands-on Photoshop training
+          {course.heroSubtitle}
         </p>
 
         {/* Buttons */}

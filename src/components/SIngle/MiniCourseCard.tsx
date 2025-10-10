@@ -2,8 +2,13 @@
 
 import React, { useState } from "react";
 import { Star, GraduationCap, X } from "lucide-react";
+import { Course } from "@/data/courseData";
 
-const MiniCourseCard: React.FC = () => {
+interface MiniCourseCardProps {
+  course: Course;
+}
+
+const MiniCourseCard: React.FC<MiniCourseCardProps> = ({ course }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -13,18 +18,21 @@ const MiniCourseCard: React.FC = () => {
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const phone = (form.elements.namedItem("phone") as HTMLInputElement).value;
 
-    const message = `Hello! I'm interested in enrolling for the Photoshop Basics course.
+    const message = `Hello! I'm interested in enrolling for the ${
+      course.title
+    } course.
 
 *Course Details:*
-- Course: Photoshop Basics
-- Price: ₹25,000
+- Course: ${course.title}
+- Price: ₹${course.price.toLocaleString()}
+- Duration: ${course.duration}
 
 *My Details:*
 - Name: ${name}
 - Email: ${email}
 - Phone: ${phone}`;
 
-    const whatsappURL = `https://wa.me/919916663357?text=${encodeURIComponent(
+    const whatsappURL = `${course.enrollUrl}?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappURL, "_blank");
@@ -33,14 +41,13 @@ const MiniCourseCard: React.FC = () => {
   };
 
   return (
-    <section className=" text-white px-6 md:px-16 py-16 flex flex-col md:flex-row items-center justify-center gap-12 font-['Playfair_Display']">
+    <section className="text-white px-6 md:px-16 py-16 flex flex-col md:flex-row items-center justify-center gap-12 font-['Playfair_Display']">
       {/* LEFT: Course Card */}
       <div className="bg-[#191919] rounded-xl p-5 w-full md:w-1/2 shadow-lg hover:-translate-y-1 transition-transform">
         <div
           className="w-full h-72 bg-contain bg-center rounded-lg mb-5 relative overflow-hidden"
           style={{
-            backgroundImage:
-              "url('https://raw.githubusercontent.com/Kasukabe-Labs/wix-work/main/imgs/photoshop-new.jpg')",
+            backgroundImage: `url('${course.image}')`,
           }}
         ></div>
 
@@ -53,11 +60,9 @@ const MiniCourseCard: React.FC = () => {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold mb-3">Photoshop Basics</h2>
+        <h2 className="text-2xl font-bold mb-3">{course.title}</h2>
         <p className="text-gray-300 text-sm mb-5 leading-relaxed">
-          Dive deep into the world of professional cinematography, from camera
-          techniques and lighting to framing, movement, and mood. Learn how to
-          shoot like a pro.
+          {course.description}
         </p>
 
         <div className="flex items-center justify-between">
@@ -74,7 +79,9 @@ const MiniCourseCard: React.FC = () => {
               </div>
             </div>
             <div>
-              <p className="text-white font-semibold text-sm">25,000+</p>
+              <p className="text-white font-semibold text-sm">
+                {course.students}
+              </p>
               <p className="text-gray-400 text-xs">Students Enrolled</p>
             </div>
           </div>
@@ -89,16 +96,13 @@ const MiniCourseCard: React.FC = () => {
         </button>
       </div>
 
-      {/* RIGHT: Why Learn Photo Editing */}
+      {/* RIGHT: Why Learn */}
       <div className="w-full md:w-1/2 space-y-6">
         <h2 className="text-3xl md:text-4xl font-bold leading-snug">
-          Why Learn Photo Editing?
+          {course.whyLearnTitle}
         </h2>
         <p className="text-[#d1d1d1] leading-relaxed text-[15px]">
-          Photo editing is the backbone of photography, fashion, e-commerce, and
-          social media. With Akshay Entertainment Academy, you’ll gain
-          professional Photoshop skills, real-world editing experience, and the
-          confidence to work on weddings, brands, and freelance projects.
+          {course.whyLearnDescription}
         </p>
 
         <button className="bg-[#FFD966] text-black rounded-[24px] px-6 py-2 font-semibold hover:bg-[#ffea8f] transition-all duration-200 cursor-pointer">
