@@ -13,6 +13,7 @@ export default function OurFilms() {
       students: "500+ Students",
       description:
         '"Mahaan Hutatma" the national award-winning short film directly translating into "The Great Martyr" is a dedication to the martyred freedom fighters and the Indian Army for their selfless sacrifice.',
+      url: "https://www.akshayentertainment.com/mahaan-hutatma",
     },
     {
       title: "Bhinna a Web Series",
@@ -23,6 +24,7 @@ export default function OurFilms() {
       students: "500+ Students",
       description:
         '"Bhinna" is a web series about family, suspense, and thriller. How an 8-year-old child Bhinna copes with her mothers death, and the challenges she and her father face, is the story of resilience and hope.',
+      url: "https://www.akshayentertainment.com/copy-of-mahaan-hutatma",
     },
   ];
 

@@ -3,6 +3,7 @@ import React from "react";
 import { FaClock } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import { MdPeopleAlt } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 type FilmCardProps = {
   title: string;
@@ -12,6 +13,7 @@ type FilmCardProps = {
   students: string | number;
   description: string;
   buttonText?: string;
+  url: string;
 };
 
 export function FilmCard({
@@ -21,8 +23,14 @@ export function FilmCard({
   rating,
   students,
   description,
+  url,
   buttonText = "Watch Now",
 }: FilmCardProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(url);
+  };
   return (
     <div className="bg-[#191919] rounded-[16px] p-5 w-[340px] flex flex-col gap-4 shadow-lg border border-[#FEC447]/10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl mx-auto font-[Playfair_Display]">
       {/* Banner Image */}
@@ -61,7 +69,10 @@ export function FilmCard({
       </p>
 
       {/* Button */}
-      <button className="bg-[#FEC447] text-[#191919] rounded-[8px] py-3 font-semibold text-[15px] shadow-md w-full transition-all duration-300 hover:bg-[#E6B03D] hover:-translate-y-0.5 hover:shadow-lg">
+      <button
+        onClick={handleClick}
+        className="bg-[#FEC447] text-[#191919] rounded-[8px] py-3 font-semibold text-[15px] shadow-md w-full transition-all duration-300 hover:bg-[#E6B03D] hover:-translate-y-0.5 hover:shadow-lg"
+      >
         {buttonText}
       </button>
     </div>
