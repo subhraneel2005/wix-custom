@@ -1,5 +1,6 @@
 "use client";
 
+import { safeOpen } from "@/utils/safeOpen";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import {
   FaWhatsapp,
@@ -42,7 +43,7 @@ export default function ContactForm() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { firstName, lastName, mobile, email, interest } = formData;
-    const whatsappMessage = `Hello! I'm interested in your services.
+    const whatsappMessage = `Hello! Im interested in your services.
 
 *Contact Details:*
 Name: ${firstName} ${lastName}
@@ -59,28 +60,32 @@ Looking forward to hearing from you!`;
     const phoneNumber = "919916663357";
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank");
+    safeOpen(whatsappURL, "_blank");
   };
 
   const openWhatsApp = () =>
-    sendToWhatsApp("Hello! I'd like to know more about your services.");
-  const callUs = () => window.open("tel:+919916663357", "_self");
+    sendToWhatsApp("Hello! Id like to know more about your services.");
+
+  const callUs = () => safeOpen("tel:+919916663357", "_self");
+
   const openMaps = () =>
-    window.open(
+    safeOpen(
       "https://www.google.com/maps/search/?api=1&query=" +
         encodeURIComponent("123 Avenue, Bengaluru"),
       "_blank"
     );
+
   const sendEmail = () =>
-    window.open(
+    safeOpen(
       `mailto:123@gmail.com?subject=${encodeURIComponent(
         "Inquiry about your services"
       )}&body=${encodeURIComponent(
-        "Hello,\n\nI'm interested in learning more about your services.\n\nBest regards,"
+        "Hello,\n\nIm interested in learning more about your services.\n\nBest regards,"
       )}`,
       "_self"
     );
-  const openWebsite = () => window.open("https://www.123.com", "_blank");
+
+  const openWebsite = () => safeOpen("https://www.123.com", "_blank");
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-4 md:p-8">
@@ -93,7 +98,7 @@ Looking forward to hearing from you!`;
                 Get In Touch
               </h2>
               <p className="text-gray-400 text-base">
-                Fill out the form below and we'll get back to you soon
+                Fill out the form below and well get back to you soon
               </p>
             </div>
 

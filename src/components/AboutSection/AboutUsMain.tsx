@@ -46,7 +46,7 @@ export default function AboutUsMain() {
                 <p>
                   <span className="font-semibold text-[#FEC447]">
                     Akshay Entertainment
-                  </span>{" "}
+                  </span>
                   is a film production company, run by a Akshay Chandrashekhar
                   who is an Actor, creative and talented individual and
                   committed to producing, financing and distributing high
@@ -119,7 +119,9 @@ export default function AboutUsMain() {
           {/* Left - Quote */}
           <div className="order-2 lg:order-1">
             <div className="relative">
-              <div className="text-6xl text-[#FEC447] font-serif mb-4">"</div>
+              <div className="text-6xl text-[#FEC447] font-serif mb-4">
+                &quot;
+              </div>
               <p className="text-white/90 text-lg md:text-xl italic leading-relaxed">
                 <span className="font-medium">Through the lens of cinema</span>,
                 we capture not just moments, but{" "}

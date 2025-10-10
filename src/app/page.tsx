@@ -2,7 +2,6 @@ import ContactForm from "@/components/ContactForm";
 import OurCourses from "@/components/CoursesSection/OurCourses";
 import About from "@/components/HeroSection/About";
 import BehindTheScenes from "@/components/HeroSection/BehindTheScenes";
-import Courses from "@/components/HeroSection/Courses";
 import Hero from "@/components/HeroSection/Hero";
 import ImageCarousel from "@/components/HeroSection/ImageCarousel";
 import InstructorCards from "@/components/HeroSection/InstructorCards";

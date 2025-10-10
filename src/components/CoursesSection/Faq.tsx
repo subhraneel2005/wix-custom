@@ -9,7 +9,7 @@ const faqs = [
     answer: (
       <>
         <p>
-          You'll have{" "}
+          You will have{" "}
           <span className="bg-yellow-400/40 px-1 rounded">lifetime access</span>{" "}
           to all course materials once you enroll. This includes video lectures,
           downloadable resources, assignments, and any future updates to the
@@ -28,7 +28,7 @@ const faqs = [
     answer: (
       <>
         <p>
-          Yes! Upon successful completion of the course, you'll receive a{" "}
+          Yes! Upon successful completion of the course, you will receive a{" "}
           <span className="bg-yellow-400/40 px-1 rounded">
             verified certificate
           </span>{" "}
@@ -50,12 +50,12 @@ const faqs = [
           <span className="bg-yellow-400/40 px-1 rounded">
             30-day money-back guarantee
           </span>{" "}
-          for all our courses. If you're not completely satisfied with your
+          for all our courses. If you are not completely satisfied with your
           learning experience, you can request a full refund within 30 days of
           purchase.
         </p>
         <p>
-          Simply contact our support team with your order details, and we'll
+          Simply contact our support team with your order details, and we will
           process your refund within 5-7 business days.
         </p>
       </>
@@ -75,8 +75,8 @@ const faqs = [
         </p>
         <p>
           For advanced courses, we may require completion of foundational
-          courses or equivalent experience. Don't worry - we'll guide you to the
-          right starting point based on your current skill level.
+          courses or equivalent experience. Don not worry - we will guide you to
+          the right starting point based on your current skill level.
         </p>
       </>
     ),

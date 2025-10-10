@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Star, GraduationCap, X } from "lucide-react";
 import { Course } from "@/data/courseData";
+import { safeOpen } from "@/utils/safeOpen";
 
 interface MiniCourseCardProps {
   course: Course;
@@ -35,7 +36,7 @@ const MiniCourseCard: React.FC<MiniCourseCardProps> = ({ course }) => {
     const whatsappURL = `${course.enrollUrl}?text=${encodeURIComponent(
       message
     )}`;
-    window.open(whatsappURL, "_blank");
+    safeOpen(whatsappURL, "_blank");
     setIsModalOpen(false);
     form.reset();
   };

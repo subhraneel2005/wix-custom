@@ -1,6 +1,4 @@
 import React from "react";
-import FancyCards from "./FancyCards";
-import ResourceCards from "./ResourceCards";
 import TabbedImageGallery from "./TabbedImageGallery";
 
 export default function OurStudents() {

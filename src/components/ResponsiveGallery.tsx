@@ -109,6 +109,7 @@ const tabs: Tab[] = [
 
 export default function ResponsiveGallery() {
   const [activeTab, setActiveTab] = useState<Category>("all");
+  const [height, setHeight] = useState("400px");
   const [loadedImages, setLoadedImages] = useState<{ [key: number]: boolean }>(
     {}
   );
@@ -132,6 +133,22 @@ export default function ResponsiveGallery() {
       img.src = src;
     });
   }, [activeTab]);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const width = window.innerWidth;
+      if (width >= 769 && width <= 1024) {
+        setHeight("350px");
+      } else {
+        setHeight("400px");
+      }
+    };
+
+    updateHeight(); // initial check
+    window.addEventListener("resize", updateHeight);
+
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   const handleTabClick = (tabId: Category) => {
     setActiveTab(tabId);
@@ -336,12 +353,7 @@ export default function ResponsiveGallery() {
       {/* Desktop Grid (visible on desktop only) */}
       <div
         className="hidden md:block relative w-full h-[400px] mx-auto gallery-grid-desktop"
-        style={{
-          height:
-            window.innerWidth >= 769 && window.innerWidth <= 1024
-              ? "350px"
-              : "400px",
-        }}
+        style={{ height }}
       >
         {images.map((src, index) => (
           <div

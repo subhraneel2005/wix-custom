@@ -1,5 +1,4 @@
 import React from "react";
-import FancyCards from "./FancyCards";
 import ResourceCards from "./ResourceCards";
 
 export default function GetFreeWithCourse() {

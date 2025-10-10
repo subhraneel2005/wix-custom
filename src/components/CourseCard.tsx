@@ -1,4 +1,5 @@
 "use client";
+import { safeOpen } from "@/utils/safeOpen";
 import React, { useState } from "react";
 import { FaClock, FaCheck } from "react-icons/fa";
 import { MdPeopleAlt, MdBook } from "react-icons/md";
@@ -29,8 +30,7 @@ export function CourseCard({
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleEnroll = () => setModalOpen(true);
-  const handleKnowMore = () =>
-    knowMoreUrl && window.open(knowMoreUrl, "_blank");
+  const handleKnowMore = () => knowMoreUrl && safeOpen(knowMoreUrl, "_blank");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,7 +46,8 @@ export function CourseCard({
 
     if (enrollUrl) {
       const message = `Hello, I am interested in enrolling.\n\nCourse: ${title}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`;
-      window.open(`${enrollUrl}?text=${encodeURIComponent(message)}`, "_blank");
+      safeOpen(`${enrollUrl}?text=${encodeURIComponent(message)}`, "_blank");
+
       setModalOpen(false);
     }
   };
@@ -89,7 +90,7 @@ export function CourseCard({
 
         {/* Learn Points */}
         <div className="mb-4">
-          <h3 className="text-[16px] text-white mb-2">What You'll Learn:</h3>
+          <h3 className="text-[16px] text-white mb-2">What You will Learn:</h3>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {learnPoints.map((point, idx) => (
               <li

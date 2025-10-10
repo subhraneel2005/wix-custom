@@ -1,6 +1,4 @@
 import React from "react";
-import FancyCards from "./FancyCards";
-import ResourceCards from "./ResourceCards";
 import FeatureCards from "./FeatureCards";
 
 export default function WhyUs() {

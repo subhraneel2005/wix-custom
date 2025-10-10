@@ -1,5 +1,6 @@
 "use client";
 
+import { safeOpen } from "@/utils/safeOpen";
 import React, { useState } from "react";
 
 export default function ContactSection() {
@@ -45,7 +46,7 @@ City: ${city}
 I look forward to hearing from you soon!`;
 
     setTimeout(() => {
-      window.open(
+      safeOpen(
         `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
           whatsappMessage
         )}`,
@@ -69,7 +70,7 @@ I look forward to hearing from you soon!`;
     const subject = "Inquiry from Website";
     const body =
       "Hello,\n\nI'm interested in learning more about your services.\n\nBest regards,";
-    window.open(
+    safeOpen(
       `mailto:${emailAddress}?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`,
@@ -77,14 +78,12 @@ I look forward to hearing from you soon!`;
     );
   };
 
-  const handleCallClick = () => {
-    window.open(`tel:+${phoneNumber}`, "_self");
-  };
+  const handleCallClick = () => safeOpen(`tel:+${phoneNumber}`, "_self");
 
   const handleMapClick = () => {
     const mapURL =
       "https://www.google.com/maps/place/Akshay+Entertainment/@22.7529374,75.8577259,15z/data=!4m5!3m4!1s0x396302b52f307ef7:0x61d42e2f1ffba07c!8m2!3d22.7529374!4d75.8577259";
-    window.open(mapURL, "_blank");
+    safeOpen(mapURL, "_blank");
   };
 
   return (
@@ -97,7 +96,7 @@ I look forward to hearing from you soon!`;
             Get in touch <span className="italic">with us</span>
           </h2>
           <p className="text-sm text-gray-400 mb-6 mt-2">
-            We're here to help with any questions or feedback
+            Were here to help with any questions or feedback
           </p>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="flex flex-col sm:flex-row gap-3">

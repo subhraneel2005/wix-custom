@@ -1,5 +1,6 @@
 "use client";
 
+import { safeOpen } from "@/utils/safeOpen";
 import React, { useState } from "react";
 
 const LeadForm = () => {
@@ -56,7 +57,7 @@ const LeadForm = () => {
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/919916663357?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank");
+    safeOpen(whatsappURL, "_blank");
 
     setTimeout(() => {
       setFormData({ name: "", whatsapp: "", email: "", city: "" });

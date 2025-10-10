@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { FilmCard } from "../FilmCard";
 import { CourseCard } from "../CourseCard";
 
 export default function Courses() {
