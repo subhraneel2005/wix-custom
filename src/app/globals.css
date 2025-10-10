@@ -10,6 +10,6 @@ body {
 }
 @layer utilities {
   .container {
-    @apply max-w-7xl mx-auto px-6;
+    @apply max-w-7xl mx-auto px-2;
   }
 }
