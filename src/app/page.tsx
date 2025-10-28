@@ -15,7 +15,7 @@ export default function Home() {
       <ImageCarousel />
       <About />
       <OurFilms />
-      <OurCourses />
+      <OurCourses limit={2} />
       <InstructorCards />
       <BehindTheScenes />
       <LetsTalk />

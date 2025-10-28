@@ -2,9 +2,11 @@ import React from "react";
 import { CourseCard } from "../CourseCard";
 import { coursesData } from "@/data/courseData";
 
-export default function OurCourses() {
+export default function OurCourses({ limit }: { limit?: number }) {
+  const displayedCourses = limit ? coursesData.slice(0, limit) : coursesData;
+
   return (
-    <div className="h-full w-full flex flex-col items-center bg-black text-white mt-14">
+    <div className="h-full w-full flex flex-col items-center bg-black text-white mt-8">
       <div className="container flex flex-col items-center">
         {/* Header Section */}
         <div className="text-center mb-4">
@@ -19,7 +21,7 @@ export default function OurCourses() {
         </div>
         {/* Course Cards - Using Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto py-16 w-full md:px-12 px-4">
-          {coursesData.map((course, index) => (
+          {displayedCourses.map((course, index) => (
             <CourseCard
               key={index}
               {...course}

@@ -9,9 +9,12 @@ const LeadForm = () => {
     whatsapp: "",
     email: "",
     city: "",
+    course: "", // new field
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
 
     if (name === "whatsapp") {
@@ -40,9 +43,9 @@ const LeadForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { name, whatsapp, email, city } = formData;
+    const { name, whatsapp, email, city, course } = formData;
 
-    if (!name || !whatsapp || !email || !city) {
+    if (!name || !whatsapp || !email || !city || !course) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -52,7 +55,8 @@ const LeadForm = () => {
       `📝 *Name:* ${name}\n` +
       `📱 *WhatsApp:* ${whatsapp}\n` +
       `📧 *Email:* ${email}\n` +
-      `🏙️ *City:* ${city}\n\n` +
+      `🏙️ *City:* ${city}\n` +
+      `🎓 *Course:* ${course}\n\n` +
       `Generated from website form`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -60,7 +64,13 @@ const LeadForm = () => {
     safeOpen(whatsappURL, "_blank");
 
     setTimeout(() => {
-      setFormData({ name: "", whatsapp: "", email: "", city: "" });
+      setFormData({
+        name: "",
+        whatsapp: "",
+        email: "",
+        city: "",
+        course: "",
+      });
     }, 1000);
   };
 
@@ -73,6 +83,7 @@ const LeadForm = () => {
         Get In Touch
       </h2>
       <form onSubmit={handleSubmit}>
+        {/* Name */}
         <div className="mb-[20px]">
           <label
             className="block text-[#D4AF37] text-[14px] font-medium mb-[8px]"
@@ -86,12 +97,13 @@ const LeadForm = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] transition-all duration-300 focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
+            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
             placeholder="Enter your full name"
             required
           />
         </div>
 
+        {/* WhatsApp */}
         <div className="mb-[20px]">
           <label
             className="block text-[#D4AF37] text-[14px] font-medium mb-[8px]"
@@ -105,12 +117,13 @@ const LeadForm = () => {
             name="whatsapp"
             value={formData.whatsapp}
             onChange={handleChange}
-            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] transition-all duration-300 focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
+            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
             placeholder="+91 XXXXX XXXXX"
             required
           />
         </div>
 
+        {/* Email */}
         <div className="mb-[20px]">
           <label
             className="block text-[#D4AF37] text-[14px] font-medium mb-[8px]"
@@ -124,12 +137,13 @@ const LeadForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] transition-all duration-300 focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
+            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
             placeholder="your.email@example.com"
             required
           />
         </div>
 
+        {/* City */}
         <div className="mb-[20px]">
           <label
             className="block text-[#D4AF37] text-[14px] font-medium mb-[8px]"
@@ -143,15 +157,43 @@ const LeadForm = () => {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] transition-all duration-300 focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
+            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#888888]"
             placeholder="Enter your city"
             required
           />
         </div>
 
+        {/* Course Selection */}
+        <div className="mb-[25px]">
+          <label
+            htmlFor="course"
+            className="block text-[#D4AF37] text-[14px] font-medium mb-[8px]"
+          >
+            Select Course <span className="text-[#ff4444]">*</span>
+          </label>
+          <select
+            id="course"
+            name="course"
+            value={formData.course}
+            onChange={handleChange}
+            required
+            className="w-full p-[12px_16px] bg-[#1a1a1a] border-2 border-[#333333] rounded-[8px] text-white text-[16px] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)]"
+          >
+            <option value="">-- Select a Course --</option>
+            <option value="Photoshop">Photoshop</option>
+            <option value="Video Editing">Video Editing</option>
+            <option value="Combined Photoshop + Video Editing">
+              Combined Photoshop + Video Editing
+            </option>
+            <option value="After Effects">After Effects</option>
+            <option value="Cinematography">Cinematography</option>
+          </select>
+        </div>
+
+        {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F4E878] text-black border-none py-[14px] px-[20px] text-[16px] font-semibold rounded-[8px] cursor-pointer transition-all duration-300 uppercase tracking-[1px] hover:from-[#F4E878] hover:to-[#D4AF37] hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(212,175,55,0.3)] active:translate-y-0"
+          className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F4E878] text-black border-none py-[14px] px-[20px] text-[16px] font-semibold rounded-[8px] uppercase tracking-[1px] hover:from-[#F4E878] hover:to-[#D4AF37] transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(212,175,55,0.3)] active:translate-y-0"
         >
           Apply Now
         </button>
